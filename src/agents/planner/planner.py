@@ -9,7 +9,7 @@ class Planner:
         self.llm = LLM(model_id=base_model)
 
     def render(self, prompt: str) -> str:
-        env = Environment(loader=BaseLoader())
+        env = Environment(loader=BaseLoader(), autoescape=True)
         template = env.from_string(PROMPT)
         return template.render(prompt=prompt)
     

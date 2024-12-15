@@ -9,7 +9,7 @@ class Formatter:
         self.llm = LLM(model_id=base_model)
 
     def render(self, raw_text: str) -> str:
-        env = Environment(loader=BaseLoader())
+        env = Environment(loader=BaseLoader(), autoescape=True)
         template = env.from_string(PROMPT)
         return template.render(raw_text=raw_text)
     

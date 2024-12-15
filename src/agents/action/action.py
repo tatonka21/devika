@@ -18,7 +18,7 @@ class Action:
     def render(
         self, conversation: str
     ) -> str:
-        env = Environment(loader=BaseLoader())
+        env = Environment(loader=BaseLoader(), autoescape=True)
         template = env.from_string(PROMPT)
         return template.render(
             conversation=conversation

@@ -16,7 +16,7 @@ class Researcher:
         self.llm = LLM(model_id=base_model)
 
     def render(self, step_by_step_plan: str, contextual_keywords: str) -> str:
-        env = Environment(loader=BaseLoader())
+        env = Environment(loader=BaseLoader(), autoescape=True)
         template = env.from_string(PROMPT)
         return template.render(
             step_by_step_plan=step_by_step_plan,
