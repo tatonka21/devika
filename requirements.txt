@@ -31,3 +31,4 @@ orjson
 gevent
 gevent-websocket
 curl_cffi
+security==1.3.1
