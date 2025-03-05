@@ -9,7 +9,7 @@ class GitHub:
     def get_repositories(self) -> List[str]:
         headers = {"Authorization": f"token {self.token}"}
         response = requests.get(
-            "https://api.github.com/user/repos", headers=headers
-        )
+            "https://api.github.com/user/repos", headers=headers, 
+        timeout=60)
         response.raise_for_status()
         return [repo["full_name"] for repo in response.json()]

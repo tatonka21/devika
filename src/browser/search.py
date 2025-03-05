@@ -19,7 +19,7 @@ class BingSearch:
         params = {"q": query, "mkt": "en-US"}
 
         try:
-            response = requests.get(self.bing_api_endpoint, headers=headers, params=params)
+            response = requests.get(self.bing_api_endpoint, headers=headers, params=params, timeout=60)
             response.raise_for_status()
             self.query_result = response.json()
             return self.query_result
@@ -46,7 +46,7 @@ class GoogleSearch:
         }
         try:
             print("Searching in Google...")
-            response = requests.get(self.google_search_api_endpoint, params=params)
+            response = requests.get(self.google_search_api_endpoint, params=params, timeout=60)
             # response.raise_for_status()
             self.query_result = response.json()
         except Exception as error:
