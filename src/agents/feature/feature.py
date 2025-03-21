@@ -26,7 +26,7 @@ class Feature:
         code_markdown: str,
         system_os: str
     ) -> str:
-        env = Environment(loader=BaseLoader())
+        env = Environment(loader=BaseLoader(), autoescape=True)
         template = env.from_string(PROMPT)
         return template.render(
             conversation=conversation,

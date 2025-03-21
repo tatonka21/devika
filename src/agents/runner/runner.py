@@ -26,7 +26,7 @@ class Runner:
         code_markdown: str,
         system_os: str
     ) -> str:
-        env = Environment(loader=BaseLoader())
+        env = Environment(loader=BaseLoader(), autoescape=True)
         template = env.from_string(PROMPT)
         return template.render(
             conversation=conversation,
@@ -42,7 +42,7 @@ class Runner:
         commands: list,
         error: str
     ):
-        env = Environment(loader=BaseLoader())
+        env = Environment(loader=BaseLoader(), autoescape=True)
         template = env.from_string(RERUNNER_PROMPT)
         return template.render(
             conversation=conversation,
