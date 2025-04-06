@@ -11,6 +11,7 @@ from src.llm import LLM
 from src.state import AgentState
 from src.project import ProjectManager
 from src.services.utils import retry_wrapper, validate_responses
+from security import safe_command
 
 PROMPT = open("src/agents/runner/prompt.jinja2", "r").read().strip()
 RERUNNER_PROMPT = open("src/agents/runner/rerunner.jinja2", "r").read().strip()
@@ -82,8 +83,7 @@ class Runner:
             command_set = command.split(" ")
             command_failed = False
             
-            process = subprocess.run(
-                command_set,
+            process = safe_command.run(subprocess.run, command_set,
                 stdout=subprocess.PIPE,
                 stderr=subprocess.PIPE,
                 cwd=project_path
@@ -134,8 +134,7 @@ class Runner:
                     command_set = command.split(" ")
                     command_failed = False
                     
-                    process = subprocess.run(
-                        command_set,
+                    process = safe_command.run(subprocess.run, command_set,
                         stdout=subprocess.PIPE,
                         stderr=subprocess.PIPE,
                         cwd=project_path
@@ -174,8 +173,7 @@ class Runner:
                     command_set = command.split(" ")
                     command_failed = False
                     
-                    process = subprocess.run(
-                        command_set,
+                    process = safe_command.run(subprocess.run, command_set,
                         stdout=subprocess.PIPE,
                         stderr=subprocess.PIPE,
                         cwd=project_path
