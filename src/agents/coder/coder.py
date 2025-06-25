@@ -23,7 +23,7 @@ class Coder:
     def render(
         self, step_by_step_plan: str, user_context: str, search_results: dict
     ) -> str:
-        env = Environment(loader=BaseLoader())
+        env = Environment(loader=BaseLoader(), autoescape=True)
         template = env.from_string(PROMPT)
         return template.render(
             step_by_step_plan=step_by_step_plan,
